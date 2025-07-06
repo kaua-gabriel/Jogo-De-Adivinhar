@@ -66,7 +66,7 @@ function resetGame() {
     }
 }
 
-// Atualiza o contador de visitas usando localStorage
+// contador de visistas
 function updateVisitCount() {
     let visitCount = localStorage.getItem('visitCount');
 
