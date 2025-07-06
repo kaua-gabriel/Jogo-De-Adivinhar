@@ -1,79 +1,86 @@
-// Variáveis iniciais
-let secretNumber = Math.floor(Math.random() * 100) + 1; // Número aleatório entre 1 e 100
+// Número secreto aleatório entre 1 e 100
+let secretNumber = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
 
-// Elementos da página
+// Elementos da interface
 const guessInput = document.getElementById('guess');
 const submitButton = document.getElementById('submit');
 const message = document.getElementById('message');
 const attemptsDisplay = document.getElementById('attempts');
-const visitCountDisplay = document.getElementById('visit-count'); // Elemento para mostrar o contador de visitas
-const resetButton = document.getElementById('reset'); // Botão para resetar o contador de visitas
+const visitCountDisplay = document.getElementById('visit-count');
 
-// Função para verificar o palpite
+// Verifica palpite
 function checkGuess() {
     const userGuess = Number(guessInput.value);
+
+    // Validação
+    if (!userGuess || userGuess < 1 || userGuess > 100) {
+        message.textContent = 'Digite um número entre 1 e 100.';
+        message.className = 'wrong-low';
+        return;
+    }
+
     attempts++;
     attemptsDisplay.textContent = attempts;
 
     if (userGuess === secretNumber) {
-        message.textContent = `Parabéns! Você acertou o número ${secretNumber}!`;
-        message.style.color = 'green';
-        submitButton.disabled = true; // Desabilita o botão após acertar
+        message.textContent = `🎉 Parabéns! Você acertou o número ${secretNumber}!`;
+        message.className = 'correct';
+        submitButton.disabled = true;
+
+        // Adiciona botão "Jogar Novamente"
+        const resetGameBtn = document.createElement('button');
+        resetGameBtn.textContent = 'Jogar Novamente';
+        resetGameBtn.style.marginTop = '15px';
+        resetGameBtn.addEventListener('click', resetGame);
+        message.after(resetGameBtn);
+
     } else if (userGuess < secretNumber) {
-        message.textContent = 'O número é maior!';
-        message.style.color = 'orange';
-    } else if (userGuess > secretNumber) {
-        message.textContent = 'O número é menor!';
-        message.style.color = 'orange';
+        message.textContent = '🔺 O número é maior!';
+        message.className = 'wrong-low';
+    } else {
+        message.textContent = '🔻 O número é menor!';
+        message.className = 'wrong-high';
     }
 
-    guessInput.value = ''; // Limpa o campo de entrada
-    guessInput.focus(); // Foca de novo no campo
+    guessInput.value = '';
+    guessInput.focus();
 }
 
-// Função para contar as visitas
-function updateVisitCount() {
-    // Verifica se a página já foi visitada anteriormente
-    let visitCount = localStorage.getItem('visitCount');
-    
-    if (visitCount === null) {
-        visitCount = 1; // Se for a primeira visita, inicia com 1
-    } else {
-        visitCount = parseInt(visitCount) + 1; // Caso contrário, incrementa o contador
+// Reseta o jogo
+function resetGame() {
+    secretNumber = Math.floor(Math.random() * 100) + 1;
+    attempts = 0;
+    attemptsDisplay.textContent = attempts;
+    message.textContent = '';
+    message.className = '';
+    guessInput.disabled = false;
+    submitButton.disabled = false;
+    guessInput.value = '';
+    guessInput.focus();
+
+    // Remove o botão "Jogar Novamente" se existir
+    const resetButton = message.nextElementSibling;
+    if (resetButton && resetButton.textContent === 'Jogar Novamente') {
+        resetButton.remove();
     }
+}
 
-    // Salva o novo valor no localStorage
+// Atualiza o contador de visitas usando localStorage
+function updateVisitCount() {
+    let visitCount = localStorage.getItem('visitCount');
+
+    visitCount = visitCount ? parseInt(visitCount) + 1 : 1;
     localStorage.setItem('visitCount', visitCount);
-
-    // Exibe o contador de visitas na página
     visitCountDisplay.textContent = visitCount;
 }
 
-// Função para resetar o contador de visitas
-function resetVisitCount() {
-    // Zera o contador no localStorage
-    localStorage.setItem('visitCount', 0);
-
-    // Atualiza a exibição do contador na página
-    visitCountDisplay.textContent = 0;
-}
-
-// Atualiza o contador de visitas ao carregar a página (apenas uma vez)
+// Inicializa
 updateVisitCount();
+guessInput.focus();
 
-// Evento de clique no botão
+// Eventos
 submitButton.addEventListener('click', checkGuess);
-
-// Opcional: Permite pressionar "Enter" para adivinhar
 guessInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        checkGuess();
-    }
-});
-
-// Evento de clique para resetar o contador de visitas
-resetButton.addEventListener('click', function() {
-    resetVisitCount();
-    updateVisitCount();  // Reatualiza o contador de visitas após o reset
+    if (event.key === 'Enter') checkGuess();
 });

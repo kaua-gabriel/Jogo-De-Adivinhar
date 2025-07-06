@@ -7,18 +7,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="game-container">
-        <h1>Jogo de Adivinhação</h1>
-        <p>Advinhe o número entre 1 e 100:</p>
+    <main class="container">
+        <h1>🎯 Jogo de Adivinhação</h1>
+        <p>Digite um número de <strong>1 a 100</strong> e tente acertar!</p>
         
         <input type="number" id="guess" placeholder="Digite seu palpite" />
         <button id="submit">Adivinhar</button>
         
         <p id="message"></p>
         <p>Você já tentou <span id="attempts">0</span> vezes.</p>
-        
-        <p>Visitas: <span id="visit-count">0</span></p>
-   
+<br />
+        <div class="visit-counter">
+            <p>Visitas: <span id="visit-count">0</span></p>
+        </div>
+    </main>
+
     <script src="game.js"></script>
 </body>
 </html>
