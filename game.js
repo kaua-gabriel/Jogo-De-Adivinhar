@@ -7,7 +7,6 @@ const guessInput = document.getElementById('guess');
 const submitButton = document.getElementById('submit');
 const message = document.getElementById('message');
 const attemptsDisplay = document.getElementById('attempts');
-const visitCountDisplay = document.getElementById('visit-count');
 
 // Verifica palpite
 function checkGuess() {
@@ -47,111 +46,170 @@ function checkGuess() {
     guessInput.focus();
 }
 
+
 // Reseta o jogo
 function resetGame() {
     secretNumber = Math.floor(Math.random() * 100) + 1;
     attempts = 0;
+
     attemptsDisplay.textContent = attempts;
     message.textContent = '';
     message.className = '';
+
     guessInput.disabled = false;
     submitButton.disabled = false;
+
     guessInput.value = '';
     guessInput.focus();
 
     // Remove o botão "Jogar Novamente" se existir
     const resetButton = message.nextElementSibling;
-    if (resetButton && resetButton.textContent === 'Jogar Novamente') {
+
+    if (
+        resetButton &&
+        resetButton.textContent === 'Jogar Novamente'
+    ) {
         resetButton.remove();
     }
 }
 
+
+// ==============================
+// FUNDO DE GRADE
+// ==============================
+
 (() => {
-  const canvas = document.getElementById('neon-grid');
-  const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById('neon-grid');
+    const ctx = canvas.getContext('2d');
 
-  let width, height;
-  const gridSize = 50;
-  let offsetX = 0;
-  let offsetY = 0;
-  const speedX = 0.4;
-  const speedY = 0.25;
+    let width, height;
 
-  function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-  }
-  window.addEventListener('resize', resize);
-  resize();
+    const gridSize = 50;
 
-  function drawGrid() {
-    ctx.clearRect(0, 0, width, height);
+    let offsetX = 0;
+    let offsetY = 0;
 
-    ctx.strokeStyle = 'rgba(0, 255, 255, 0.15)';
-    ctx.lineWidth = 1;
+    const speedX = 0.4;
+    const speedY = 0.25;
 
-    // Linhas verticais
-    for (let x = -offsetX % gridSize; x < width; x += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x, height);
-      ctx.stroke();
+
+    function resize() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+
+        canvas.width = width;
+        canvas.height = height;
     }
 
-    // Linhas horizontais
-    for (let y = -offsetY % gridSize; y < height; y += gridSize) {
-      ctx.beginPath();
-      ctx.moveTo(0, y);
-      ctx.lineTo(width, y);
-      ctx.stroke();
+
+    window.addEventListener('resize', resize);
+
+    resize();
+
+
+    function drawGrid() {
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.strokeStyle = 'rgba(0, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
+
+
+        // Linhas verticais
+        for (
+            let x = -offsetX % gridSize;
+            x < width;
+            x += gridSize
+        ) {
+            ctx.beginPath();
+
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, height);
+
+            ctx.stroke();
+        }
+
+
+        // Linhas horizontais
+        for (
+            let y = -offsetY % gridSize;
+            y < height;
+            y += gridSize
+        ) {
+            ctx.beginPath();
+
+            ctx.moveTo(0, y);
+            ctx.lineTo(width, y);
+
+            ctx.stroke();
+        }
+
+
+        // Linhas mais brilhantes pulsando no centro
+        const pulseX =
+            width / 2 - offsetX % gridSize;
+
+        const pulseY =
+            height / 2 - offsetY % gridSize;
+
+
+        ctx.strokeStyle = 'rgba(0, 255, 255, 0.4)';
+        ctx.lineWidth = 2;
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(pulseX, 0);
+        ctx.lineTo(pulseX, height);
+
+        ctx.stroke();
+
+
+        ctx.beginPath();
+
+        ctx.moveTo(0, pulseY);
+        ctx.lineTo(width, pulseY);
+
+        ctx.stroke();
     }
 
-    // Linhas mais brilhantes pulsando no centro
-    const pulseX = width / 2 - offsetX % gridSize;
-    const pulseY = height / 2 - offsetY % gridSize;
 
-    ctx.strokeStyle = 'rgba(0, 255, 255, 0.4)';
-    ctx.lineWidth = 2;
+    function animate() {
+        offsetX += speedX;
+        offsetY += speedY;
 
-    ctx.beginPath();
-    ctx.moveTo(pulseX, 0);
-    ctx.lineTo(pulseX, height);
-    ctx.stroke();
+        drawGrid();
 
-    ctx.beginPath();
-    ctx.moveTo(0, pulseY);
-    ctx.lineTo(width, pulseY);
-    ctx.stroke();
-  }
+        requestAnimationFrame(animate);
+    }
 
-  function animate() {
-    offsetX += speedX;
-    offsetY += speedY;
 
-    drawGrid();
-    requestAnimationFrame(animate);
-  }
+    animate();
 
-  animate();
 })();
 
-// contador de visistas
-function updateVisitCount() {
-    let visitCount = localStorage.getItem('visitCount');
 
-    visitCount = visitCount ? parseInt(visitCount) + 1 : 1;
-    localStorage.setItem('visitCount', visitCount);
-    visitCountDisplay.textContent = visitCount;
-}
+// ==============================
+// INICIALIZAÇÃO
+// ==============================
 
-// Inicializa
-updateVisitCount();
 guessInput.focus();
 
-// Eventos
-submitButton.addEventListener('click', checkGuess);
-guessInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') checkGuess();
-});
+
+// ==============================
+// EVENTOS
+// ==============================
+
+submitButton.addEventListener(
+    'click',
+    checkGuess
+);
+
+
+guessInput.addEventListener(
+    'keydown',
+    (event) => {
+        if (event.key === 'Enter') {
+            checkGuess();
+        }
+    }
+);
