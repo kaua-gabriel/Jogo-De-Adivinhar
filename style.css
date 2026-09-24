@@ -40,20 +40,30 @@ body {
 
     background:
         radial-gradient(
-            ellipse at 15% 10%,
-            rgba(91, 33, 182, 0.10),
+            circle at 15% 15%,
+            rgba(91, 33, 182, 0.18),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(139, 92, 246, 0.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 70% 85%,
+            rgba(91, 33, 182, 0.14),
             transparent 32%
         ),
         radial-gradient(
-            ellipse at 85% 80%,
-            rgba(139, 92, 246, 0.08),
-            transparent 35%
+            circle at 25% 80%,
+            rgba(167, 139, 250, 0.06),
+            transparent 25%
         ),
         linear-gradient(
             135deg,
-            #05040a,
-            #0b0812 50%,
-            #100a18
+            #05040a 0%,
+            #0b0812 45%,
+            #100a1c 100%
         );
 
     color: var(--branco);
@@ -68,6 +78,77 @@ body {
     overflow: hidden;
 
     cursor: url('https://cdn.jsdelivr.net/gh/ixartz/animated-cursor@main/public/arrow.cur'), auto;
+
+    position: relative;
+}
+
+
+/* =========================
+   ESTRELAS
+========================= */
+
+body::before {
+    content: '';
+
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(
+            2px 2px at 8% 18%,
+            rgba(255, 255, 255, 0.85),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 18% 72%,
+            rgba(167, 139, 250, 0.85),
+            transparent
+        ),
+        radial-gradient(
+            2px 2px at 32% 35%,
+            rgba(255, 255, 255, 0.75),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 43% 82%,
+            rgba(167, 139, 250, 0.70),
+            transparent
+        ),
+        radial-gradient(
+            2px 2px at 57% 14%,
+            rgba(255, 255, 255, 0.90),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 68% 58%,
+            rgba(167, 139, 250, 0.80),
+            transparent
+        ),
+        radial-gradient(
+            2px 2px at 79% 22%,
+            rgba(255, 255, 255, 0.80),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 91% 76%,
+            rgba(167, 139, 250, 0.75),
+            transparent
+        ),
+        radial-gradient(
+            2px 2px at 52% 94%,
+            rgba(255, 255, 255, 0.70),
+            transparent
+        );
+
+    background-size: 100% 100%;
+
+    opacity: 0.8;
+
+    z-index: -2;
+
+    animation: starsTwinkle 4s ease-in-out infinite alternate;
 }
 
 
@@ -85,23 +166,20 @@ body {
     background:
         radial-gradient(
             circle at 20% 20%,
-            rgba(91, 33, 182, 0.16),
+            rgba(91, 33, 182, 0.10),
             transparent 35%
         ),
         radial-gradient(
             circle at 80% 70%,
-            rgba(139, 92, 246, 0.10),
+            rgba(139, 92, 246, 0.07),
             transparent 38%
-        ),
-        linear-gradient(
-            135deg,
-            #05040a 0%,
-            #0b0812 45%,
-            #100a1c 100%
         );
 
     z-index: -1;
+
     display: block;
+
+    pointer-events: none;
 }
 
 
@@ -142,7 +220,9 @@ body {
 }
 
 
-/* Borda roxa sutil */
+/* =========================
+   BORDA ROXA SUTIL
+========================= */
 
 .container::after {
     content: '';
@@ -228,14 +308,18 @@ input {
 }
 
 
-/* Placeholder */
+/* =========================
+   PLACEHOLDER
+========================= */
 
 input::placeholder {
     color: var(--cinza-escuro);
 }
 
 
-/* Foco */
+/* =========================
+   FOCO
+========================= */
 
 input:focus {
     border-color: var(--roxo);
@@ -282,7 +366,9 @@ button {
 }
 
 
-/* Hover */
+/* =========================
+   HOVER
+========================= */
 
 button:hover {
     background:
@@ -299,7 +385,9 @@ button:hover {
 }
 
 
-/* Clique */
+/* =========================
+   CLIQUE
+========================= */
 
 button:active {
     transform: scale(0.98);
@@ -445,6 +533,26 @@ p {
 
     50% {
         transform: translate(-50%, -20px);
+    }
+}
+
+
+/* =========================
+   BRILHO DAS ESTRELAS
+========================= */
+
+@keyframes starsTwinkle {
+
+    0% {
+        opacity: 0.55;
+    }
+
+    50% {
+        opacity: 0.85;
+    }
+
+    100% {
+        opacity: 0.65;
     }
 }
 
