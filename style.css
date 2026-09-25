@@ -1,5 +1,8 @@
 :root {
-    /* Identidade visual Kauã */
+    /* =========================
+       IDENTIDADE VISUAL KAUÃ
+    ========================= */
+
     --fundo: #08070d;
     --fundo-2: #0d0a16;
     --fundo-3: #151020;
@@ -38,48 +41,48 @@
 body {
     font-family: 'Poppins', sans-serif;
 
-    background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(91, 33, 182, 0.18),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 25%,
-            rgba(139, 92, 246, 0.10),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 70% 85%,
-            rgba(91, 33, 182, 0.14),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 25% 80%,
-            rgba(167, 139, 250, 0.06),
-            transparent 25%
-        ),
-        linear-gradient(
-            135deg,
-            #05040a 0%,
-            #0b0812 45%,
-            #100a1c 100%
-        );
-
     color: var(--branco);
+
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    min-height: 100vh;
-    margin: 0;
+    padding: 20px;
 
     overflow: hidden;
 
-    cursor: url('https://cdn.jsdelivr.net/gh/ixartz/animated-cursor@main/public/arrow.cur'), auto;
-
     position: relative;
+
+    background:
+        radial-gradient(
+            ellipse at 15% 10%,
+            rgba(91, 33, 182, 0.14),
+            transparent 32%
+        ),
+        radial-gradient(
+            ellipse at 85% 80%,
+            rgba(139, 92, 246, 0.08),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(76, 29, 149, 0.12),
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #05040a,
+            #0b0812 50%,
+            #100a18
+        );
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    cursor: url('https://cdn.jsdelivr.net/gh/ixartz/animated-cursor@main/public/arrow.cur'), auto;
 }
 
 
@@ -98,57 +101,58 @@ body::before {
     background-image:
         radial-gradient(
             2px 2px at 8% 18%,
-            rgba(255, 255, 255, 0.85),
-            transparent
-        ),
-        radial-gradient(
-            1px 1px at 18% 72%,
-            rgba(167, 139, 250, 0.85),
-            transparent
-        ),
-        radial-gradient(
-            2px 2px at 32% 35%,
             rgba(255, 255, 255, 0.75),
             transparent
         ),
         radial-gradient(
-            1px 1px at 43% 82%,
+            1px 1px at 18% 72%,
             rgba(167, 139, 250, 0.70),
             transparent
         ),
         radial-gradient(
+            2px 2px at 32% 35%,
+            rgba(255, 255, 255, 0.65),
+            transparent
+        ),
+        radial-gradient(
+            1px 1px at 43% 82%,
+            rgba(167, 139, 250, 0.55),
+            transparent
+        ),
+        radial-gradient(
             2px 2px at 57% 14%,
-            rgba(255, 255, 255, 0.90),
+            rgba(255, 255, 255, 0.75),
             transparent
         ),
         radial-gradient(
             1px 1px at 68% 58%,
-            rgba(167, 139, 250, 0.80),
+            rgba(167, 139, 250, 0.65),
             transparent
         ),
         radial-gradient(
             2px 2px at 79% 22%,
-            rgba(255, 255, 255, 0.80),
+            rgba(255, 255, 255, 0.70),
             transparent
         ),
         radial-gradient(
             1px 1px at 91% 76%,
-            rgba(167, 139, 250, 0.75),
+            rgba(167, 139, 250, 0.60),
             transparent
         ),
         radial-gradient(
             2px 2px at 52% 94%,
-            rgba(255, 255, 255, 0.70),
+            rgba(255, 255, 255, 0.60),
             transparent
         );
 
     background-size: 100% 100%;
 
-    opacity: 0.8;
+    opacity: 0.65;
 
     z-index: -2;
 
-    animation: starsTwinkle 4s ease-in-out infinite alternate;
+    animation:
+        starsTwinkle 5s ease-in-out infinite alternate;
 }
 
 
@@ -166,12 +170,12 @@ body::before {
     background:
         radial-gradient(
             circle at 20% 20%,
-            rgba(91, 33, 182, 0.10),
+            rgba(91, 33, 182, 0.08),
             transparent 35%
         ),
         radial-gradient(
             circle at 80% 70%,
-            rgba(139, 92, 246, 0.07),
+            rgba(139, 92, 246, 0.05),
             transparent 38%
         );
 
@@ -188,35 +192,41 @@ body::before {
 ========================= */
 
 .container {
-    text-align: center;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(21, 16, 32, 0.92),
-            rgba(8, 7, 13, 0.94)
-        );
-
-    padding: 30px;
-
-    border-radius: 20px;
-
-    border: 1px solid var(--borda);
-
-    box-shadow:
-        0 20px 50px var(--sombra),
-        0 0 30px rgba(91, 33, 182, 0.12);
-
-    width: min(350px, calc(100% - 30px));
-
     position: relative;
-
-    animation: fadeIn 1s ease-in-out;
 
     z-index: 1;
 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    width: min(350px, calc(100% - 30px));
+
+    padding: 30px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(91, 33, 182, 0.10),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(21, 16, 32, 0.88),
+            rgba(8, 7, 13, 0.93)
+        );
+
+    border: 1px solid var(--borda);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 20px 50px var(--sombra),
+        0 0 35px rgba(91, 33, 182, 0.10),
+        inset 0 0 30px rgba(139, 92, 246, 0.025);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 
@@ -234,7 +244,7 @@ body::before {
 
     border: 1px solid var(--borda-roxa);
 
-    opacity: 0.45;
+    opacity: 0.35;
 
     pointer-events: none;
 }
@@ -260,8 +270,8 @@ body::before {
     background:
         radial-gradient(
             circle,
-            rgba(167, 139, 250, 0.30),
-            rgba(91, 33, 182, 0.12) 45%,
+            rgba(167, 139, 250, 0.22),
+            rgba(91, 33, 182, 0.10) 45%,
             transparent 70%
         );
 
@@ -269,9 +279,9 @@ body::before {
 
     z-index: -1;
 
-    animation: bounce 2s infinite;
+    animation: bounce 2.8s ease-in-out infinite;
 
-    filter: blur(2px);
+    filter: blur(3px);
 }
 
 
@@ -280,22 +290,23 @@ body::before {
 ========================= */
 
 input {
-    padding: 12px 16px;
+    width: 90%;
 
-    font-size: 18px;
+    padding: 12px 16px;
 
     margin-bottom: 20px;
 
-    width: 90%;
+    font-family: inherit;
+    font-size: 18px;
 
-    border-radius: 30px;
+    color: var(--branco);
+
+    background:
+        rgba(8, 7, 13, 0.78);
 
     border: 1px solid var(--borda-roxa);
 
-    background:
-        rgba(8, 7, 13, 0.85);
-
-    color: var(--branco);
+    border-radius: 30px;
 
     outline: none;
 
@@ -304,7 +315,8 @@ input {
         box-shadow 0.3s ease,
         transform 0.3s ease;
 
-    font-family: inherit;
+    box-shadow:
+        inset 0 0 12px rgba(139, 92, 246, 0.025);
 }
 
 
@@ -322,11 +334,11 @@ input::placeholder {
 ========================= */
 
 input:focus {
-    border-color: var(--roxo);
+    border-color: var(--roxo-claro);
 
     box-shadow:
         0 0 0 3px var(--roxo-suave),
-        0 0 18px rgba(139, 92, 246, 0.25);
+        0 0 18px rgba(139, 92, 246, 0.22);
 
     transform: translateY(-1px);
 }
@@ -339,10 +351,11 @@ input:focus {
 button {
     padding: 12px 22px;
 
-    font-size: 18px;
-
     font-family: inherit;
+    font-size: 18px;
     font-weight: 600;
+
+    color: var(--branco);
 
     background:
         linear-gradient(
@@ -351,8 +364,6 @@ button {
             var(--roxo)
         );
 
-    color: var(--branco);
-
     border: 1px solid rgba(167, 139, 250, 0.35);
 
     border-radius: 30px;
@@ -360,9 +371,9 @@ button {
     cursor: pointer;
 
     transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
 }
 
 
@@ -378,10 +389,13 @@ button:hover {
             var(--roxo-escuro)
         );
 
-    transform: translateY(-2px) scale(1.03);
+    transform:
+        translateY(-2px)
+        scale(1.03);
 
     box-shadow:
-        0 0 20px rgba(139, 92, 246, 0.35);
+        0 0 20px rgba(139, 92, 246, 0.30),
+        0 0 35px rgba(91, 33, 182, 0.10);
 }
 
 
@@ -422,7 +436,7 @@ p {
     color: #4CAF50;
 
     text-shadow:
-        0 0 10px rgba(76, 175, 80, 0.65);
+        0 0 10px rgba(76, 175, 80, 0.60);
 }
 
 
@@ -431,10 +445,10 @@ p {
 ========================= */
 
 .wrong-low {
-    color: #ff4500;
+    color: #ff7043;
 
     text-shadow:
-        0 0 10px rgba(255, 69, 0, 0.55);
+        0 0 10px rgba(255, 112, 67, 0.45);
 }
 
 
@@ -443,10 +457,10 @@ p {
 ========================= */
 
 .wrong-high {
-    color: #ffd700;
+    color: #ffd166;
 
     text-shadow:
-        0 0 10px rgba(255, 215, 0, 0.55);
+        0 0 10px rgba(255, 209, 102, 0.45);
 }
 
 
@@ -462,26 +476,26 @@ p {
 
     transform: translateX(-50%);
 
-    font-size: 16px;
+    padding: 9px 14px;
 
     color: var(--cinza);
 
-    font-weight: 600;
-
     background:
-        rgba(13, 10, 22, 0.75);
-
-    padding: 9px 14px;
-
-    border-radius: 15px;
+        rgba(13, 10, 22, 0.70);
 
     border: 1px solid var(--borda);
 
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25),
+        0 0 15px rgba(91, 33, 182, 0.05);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    font-size: 16px;
+    font-weight: 600;
 
     white-space: nowrap;
 }
@@ -490,11 +504,11 @@ p {
 .visit-counter p {
     margin: 0;
 
+    color: inherit;
+
     font-size: inherit;
 
     font-weight: inherit;
-
-    color: inherit;
 
     text-shadow: none;
 }
@@ -528,11 +542,13 @@ p {
 
     0%,
     100% {
-        transform: translate(-50%, 0);
+        transform:
+            translate(-50%, 0);
     }
 
     50% {
-        transform: translate(-50%, -20px);
+        transform:
+            translate(-50%, -16px);
     }
 }
 
@@ -544,15 +560,15 @@ p {
 @keyframes starsTwinkle {
 
     0% {
-        opacity: 0.55;
+        opacity: 0.50;
     }
 
     50% {
-        opacity: 0.85;
+        opacity: 0.80;
     }
 
     100% {
-        opacity: 0.65;
+        opacity: 0.60;
     }
 }
 
@@ -603,6 +619,7 @@ p {
     .container::before {
         width: 75px;
         height: 75px;
+
         top: -35px;
     }
 
